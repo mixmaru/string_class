@@ -70,8 +70,20 @@ void string::add(const char *arg_str){
 }
 
 string string::extract(int start, int length){
+	//strから文字を切り出す
+	char *new_str = new char[length + 1];
+	char *work_str = str + start;
+	char *work_new_str = new_str;
+	int i;
+	for(i=0; i<length; i++){
+		*(work_new_str+i) = *(work_str+i);
+	}
+	*(work_new_str+i) = '\0';
 
-	return string();
+	//stringインスタンスとして作って返す
+	string ret_string;
+	ret_string.set(new_str);
+	return ret_string;
 }
 
 char *string::value(){
