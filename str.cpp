@@ -16,6 +16,7 @@ void string::set(const char *arg_str){
 	if(need_count > m_max_char_num){
 		//必要な文字数の2倍のメモリ領域を確保(+1はhull文字分)
 		m_max_char_num = (need_count * 2);
+		delete[] m_str;
 		m_str = new char[m_max_char_num + 1];
 		*m_str = 0;
 	}
