@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "str.hxx"
+#include "str.hpp"
 
 int main(void)
 {

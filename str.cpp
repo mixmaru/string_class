@@ -1,4 +1,4 @@
-#include "str.hxx"
+#include "str.hpp"
 #include <stdio.h>
 
 string::string(){
