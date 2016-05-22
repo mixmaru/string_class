@@ -3,9 +3,9 @@
 
 class string{
 private:
-	char *str;
-	int str_count;
-	int max_char_num;
+	char *m_str;
+	int m_str_count;
+	int m_max_char_num;
 	int _length(const char *);
 	
 public:
