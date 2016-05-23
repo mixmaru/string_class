@@ -12,13 +12,9 @@ void string::set(const char *arg_str){
 	//必要ならメモリ領域を追加
 	int add_count = _length(arg_str);
 	int need_count = add_count + m_count;
-
+	//メモリサイズが足りない場合はメモリ追加する
 	if(need_count > m_limit){
-		//必要な文字数の2倍のメモリ領域を確保(+1はhull文字分)
-		m_limit = (need_count * 2);
-		delete[] m_str;
-		m_str = new char[m_limit + 1];
-		*m_str = 0;
+		_expandLimit(need_count);
 	}
 
 	//文字をコピーする
@@ -38,22 +34,9 @@ void string::set(const char *arg_str){
 void string::add(const char *arg_str){
 	int add_count = _length(arg_str);
 	int need_count = add_count + m_count;
+	//メモリサイズが足りない場合はメモリ追加する
 	if(need_count > m_limit){
-		//tmp_strに必要量の倍のメモリを確保する
-		m_limit = need_count * 2;
-		char *tmp_str = new char[m_limit + 1];
-
-		//m_strの文字をtmp_strに移す
-		char *work_str = m_str;
-		char *work_tmp_str = tmp_str;
-		while(*work_str){
-			*work_tmp_str = *work_str;
-			work_tmp_str++;
-			work_str++;
-		}
-		*work_tmp_str = '\0';
-		
-		m_str = tmp_str;
+		_expandLimit(need_count);
 	}
 
 	//m_strの末へ追加していく
@@ -102,4 +85,23 @@ int string::_length(const char *arg_str){
 		count++;
 	}
 	return count;
+}
+
+void string::_expandLimit(int want_limit){
+	//tmp_strに必要量の倍のメモリを確保する
+	m_limit = want_limit * 2;
+	char *tmp_str = new char[m_limit + 1];
+
+	//m_strの文字をtmp_strに移す
+	char *work_m_str = m_str;
+	char *work_tmp_str = tmp_str;
+	while(*work_m_str){
+		*work_tmp_str = *work_m_str;
+		work_tmp_str++;
+		work_m_str++;
+	}
+	*work_tmp_str = '\0';
+	
+	delete[] m_str;
+	m_str = tmp_str;
 }
