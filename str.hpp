@@ -4,8 +4,8 @@
 class string{
 private:
 	char *m_str;
-	int m_str_count;
-	int m_max_char_num;
+	int m_count;
+	int m_limit;
 	int _length(const char *);
 	
 public:

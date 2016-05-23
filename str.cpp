@@ -4,20 +4,20 @@
 string::string(){
 	m_str = new char[11];
 	*m_str = 0;
-	m_str_count = 0;
-	m_max_char_num = 10;
+	m_count = 0;
+	m_limit = 10;
 }
 
 void string::set(const char *arg_str){
 	//必要ならメモリ領域を追加
 	int add_count = _length(arg_str);
-	int need_count = add_count + m_str_count;
+	int need_count = add_count + m_count;
 
-	if(need_count > m_max_char_num){
+	if(need_count > m_limit){
 		//必要な文字数の2倍のメモリ領域を確保(+1はhull文字分)
-		m_max_char_num = (need_count * 2);
+		m_limit = (need_count * 2);
 		delete[] m_str;
-		m_str = new char[m_max_char_num + 1];
+		m_str = new char[m_limit + 1];
 		*m_str = 0;
 	}
 
@@ -32,16 +32,16 @@ void string::set(const char *arg_str){
 	*work_str = '\0';
 
 	//文字カウント更新
-	m_str_count = m_str_count + need_count;
+	m_count = m_count + need_count;
 }
 
 void string::add(const char *arg_str){
 	int add_count = _length(arg_str);
-	int need_count = add_count + m_str_count;
-	if(need_count > m_max_char_num){
+	int need_count = add_count + m_count;
+	if(need_count > m_limit){
 		//tmp_strに必要量の倍のメモリを確保する
-		m_max_char_num = need_count * 2;
-		char *tmp_str = new char[m_max_char_num + 1];
+		m_limit = need_count * 2;
+		char *tmp_str = new char[m_limit + 1];
 
 		//m_strの文字をtmp_strに移す
 		char *work_str = m_str;
@@ -57,7 +57,7 @@ void string::add(const char *arg_str){
 	}
 
 	//m_strの末へ追加していく
-	char *work_str = m_str + m_str_count;
+	char *work_str = m_str + m_count;
 	const char *work_arg_str = arg_str;
 	while(*work_arg_str != '\0'){
 		*work_str = *work_arg_str;
@@ -67,7 +67,7 @@ void string::add(const char *arg_str){
 	*work_str = '\0';
 	
 	//文字数カウント更新
-	m_str_count = m_str_count + add_count;
+	m_count = m_count + add_count;
 }
 
 string string::extract(int start, int length){
@@ -92,7 +92,7 @@ char *string::value(){
 }
 
 int string::length(){
-	return m_str_count;
+	return m_count;
 }
 
 int string::_length(const char *arg_str){
