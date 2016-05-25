@@ -12,6 +12,7 @@ private:
 	
 public:
 	string();//コンストラクタ
+	~string();//デストラクタ
 	void set(const char *string);//文字列をセットする
 	void add(const char *string);//文字列を追加する
 	string extract(int start, int limit);//m_strからstart+1文字目からlimit文字を取り出した新しいstringインスタンスを返す

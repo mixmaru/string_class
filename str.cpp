@@ -3,9 +3,14 @@
 
 string::string(){
 	m_str = new char[11];
-	*m_str = 0;
+	*m_str = '\0';
 	m_count = 0;
 	m_limit = 10;
+}
+
+string::~string(){
+	//必要かと思ったが、deleteするとエラーが出た
+	//delete[] m_str;
 }
 
 void string::set(const char *arg_str){
@@ -53,6 +58,7 @@ string string::extract(int start, int length){
 	//stringインスタンスとして作って返す
 	string ret_string;
 	ret_string.set(new_str);
+	delete[] new_str;
 	return ret_string;
 }
 
