@@ -18,14 +18,7 @@ void string::set(const char *arg_str){
 	}
 
 	//文字をコピーする
-	char *work_str = m_str;
-	const char *work_arg_str = arg_str;
-	while(*work_arg_str){
-		*work_str = *work_arg_str;
-		work_str++;
-		work_arg_str++;
-	}
-	*work_str = '\0';
+	_add(m_str, arg_str);
 
 	//文字カウント更新
 	m_count = m_count + need_count;
@@ -40,14 +33,7 @@ void string::add(const char *arg_str){
 	}
 
 	//m_strの末へ追加していく
-	char *work_str = m_str + m_count;
-	const char *work_arg_str = arg_str;
-	while(*work_arg_str != '\0'){
-		*work_str = *work_arg_str;
-		work_str++;
-		work_arg_str++;
-	}
-	*work_str = '\0';
+	_add(m_str, arg_str);
 	
 	//文字数カウント更新
 	m_count = m_count + add_count;
@@ -93,15 +79,22 @@ void string::_expandLimit(int want_limit){
 	char *tmp_str = new char[m_limit + 1];
 
 	//m_strの文字をtmp_strに移す
-	char *work_m_str = m_str;
-	char *work_tmp_str = tmp_str;
-	while(*work_m_str){
-		*work_tmp_str = *work_m_str;
-		work_tmp_str++;
-		work_m_str++;
-	}
-	*work_tmp_str = '\0';
+	_add(tmp_str, m_str);
 	
 	delete[] m_str;
 	m_str = tmp_str;
+}
+
+void string::_add(char *string1, const char *string2){
+	//string1のポインタを、\0の位置まですすめる
+	while(*string1){
+		string1++;
+	}
+	//string1の\0の位置からstring2を追加する
+	while(*string2){
+		*string1 = *string2;
+		string1++;
+		string2++;
+	}
+	*string1 = '\0';
 }

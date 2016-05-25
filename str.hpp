@@ -8,6 +8,7 @@ private:
 	int m_limit;//格納できる最大文字数を入れる。（確保メモリサイズ-1）
 	void _expandLimit(int want_limit);//m_strのメモリサイズをwant_limit文字入るように拡張する
 	int _length(const char *string);//文字列定数の文字数を返す
+	void _add(char *string1, const char *string2);//string1の文字列の末尾からstring2の文字列を追加する
 	
 public:
 	string();//コンストラクタ
