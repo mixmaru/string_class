@@ -33,7 +33,7 @@ public:
 	string extract(int start, int limit);
 
 	//m_str文字列のポインタを返す
-	char *value();
+	const char *value();
 
 	//m_countを返す
 	int length();

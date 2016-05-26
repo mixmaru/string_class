@@ -60,7 +60,7 @@ string string::extract(int start, int length){
 }
 
 //m_str文字列のポインタを返す
-char *string::value(){
+const char *string::value(){
 	return m_str;
 }
 
