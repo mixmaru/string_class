@@ -110,3 +110,9 @@ void string::_extract(const char *from_str, char *to_str, int start, int length)
 	}
 	*(to_str + i) = '\0';
 }
+
+//(テスト用)メンバ出力関数
+void string::dump(){
+	printf("m_str: %s,\nm_count: %d,\nm_limit: %d\n\n", m_str, m_count, m_limit);
+}
+

@@ -18,6 +18,9 @@ private:
 
 	//from_strのstart文字目からlength文字をto_strへコピーする
 	void _extract(const char *from_str, char *to_str, int start, int length);
+
+	//(テスト用)メンバ出力関数
+	void dump();
 	
 public:
 	string();//コンストラクタ
