@@ -15,6 +15,10 @@ string::~string(){
 
 //文字列をセットする
 void string::set(const char *arg_str){
+	//文字列内容をクリアする
+	*m_str = '\0';
+	m_count = 0;
+	//文字列を追加する
 	add(arg_str);
 }
 
