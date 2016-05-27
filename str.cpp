@@ -15,19 +15,7 @@ string::~string(){
 
 //文字列をセットする
 void string::set(const char *arg_str){
-	//必要ならメモリ領域を追加
-	int add_count = _length(arg_str);
-	int need_count = add_count + m_count;
-	//メモリサイズが足りない場合はメモリ追加する
-	if(need_count > m_limit){
-		_expandLimit(need_count);
-	}
-
-	//文字をコピーする
-	_add(m_str, arg_str);
-
-	//文字カウント更新
-	m_count = m_count + need_count;
+	add(arg_str);
 }
 
 //文字列を追加する
