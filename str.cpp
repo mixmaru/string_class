@@ -8,9 +8,29 @@ string::string(){
 	m_limit = 10;
 }
 
+//コピーコンストラクタ
+string::string(const string &obj){
+	//内容をコピーする
+	m_count = 0;
+	m_limit = obj.m_limit;
+	m_str = new char[obj.m_limit+1];
+	add(obj.m_str);
+}
+
+//デストラクタ
 string::~string(){
-	//必要かと思ったが、deleteするとエラーが出た
-	//delete[] m_str;
+	delete[] m_str;
+}
+
+//代入演算子のオーバーロード
+string &string::operator=(const string &obj){
+	//内容をコピーする
+	delete[] m_str;
+	m_count = 0;
+	m_limit = obj.m_limit;
+	m_str = new char[obj.m_limit+1];
+	add(obj.m_str);
+	return *this;
 }
 
 //文字列をセットする
@@ -113,6 +133,6 @@ void string::_extract(const char *from_str, char *to_str, int start, int length)
 
 //(テスト用)メンバ出力関数
 void string::dump(){
-	printf("m_str: %s,\nm_count: %d,\nm_limit: %d\n\n", m_str, m_count, m_limit);
+	printf("m_str: %s,\nm_str_address %p,\nm_count: %d,\nm_limit: %d\n\n", m_str, m_str, m_count, m_limit);
 }
 

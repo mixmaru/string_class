@@ -19,12 +19,12 @@ private:
 	//from_strのstart文字目からlength文字をto_strへコピーする
 	void _extract(const char *from_str, char *to_str, int start, int length);
 
-	//(テスト用)メンバ出力関数
-	void dump();
 	
 public:
 	string();//コンストラクタ
+	string(const string &obj);//コピーコンストラクタ
 	~string();//デストラクタ
+	string &operator=(const string &obj);//代入演算子のオーバーロード
 
 	//文字列をセットする
 	void set(const char *string);
@@ -40,6 +40,9 @@ public:
 
 	//m_countを返す
 	int length();
+
+	//(テスト用)メンバ出力関数
+	void dump();
 };
 
 #endif
