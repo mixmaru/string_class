@@ -14,6 +14,7 @@ string::string(const string &obj){
 	m_count = 0;
 	m_limit = obj.m_limit;
 	m_str = new char[obj.m_limit+1];
+	*m_str = '\0';
 	add(obj.m_str);
 }
 
@@ -29,6 +30,7 @@ string &string::operator=(const string &obj){
 	m_count = 0;
 	m_limit = obj.m_limit;
 	m_str = new char[obj.m_limit+1];
+	*m_str = '\0';
 	add(obj.m_str);
 	return *this;
 }
@@ -62,6 +64,7 @@ void string::add(const char *arg_str){
 string string::extract(int start, int length){
 	//m_strから文字を切り出す
 	char *new_str = new char[length + 1];
+	*new_str = '\0';
 	_extract(m_str, new_str, start, length);
 
 	//stringインスタンスとして作って返す
@@ -86,6 +89,7 @@ void string::_expandLimit(int want_limit){
 	//tmp_strに必要量の倍のメモリを確保する
 	m_limit = want_limit * 2;
 	char *tmp_str = new char[m_limit + 1];
+	*tmp_str = '\0';
 
 	//m_strの文字をtmp_strに移す
 	_add(tmp_str, m_str);
