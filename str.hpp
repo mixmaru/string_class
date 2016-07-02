@@ -45,9 +45,6 @@ public:
 
 	//m_countを返す
 	int length();
-
-	//(テスト用)メンバ出力関数
-	void dump();
 };
 
 #endif

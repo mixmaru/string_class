@@ -139,9 +139,3 @@ void string::_copyObj(string *obj, const string *base_obj){
 	obj->m_str = _allocateChar(base_obj->m_limit+1);
 	add(base_obj->m_str);
 }
-
-//(テスト用)メンバ出力関数
-void string::dump(){
-	printf("m_str: %s,\nm_str_address %p,\nm_count: %d,\nm_limit: %d\n\n", m_str, m_str, m_count, m_limit);
-}
-
