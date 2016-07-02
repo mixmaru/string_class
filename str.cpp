@@ -1,9 +1,9 @@
 #include "str.hpp"
 #include <stdio.h>
 
+//コンストラクタ
 string::string(){
-	m_str = new char[11];
-	*m_str = '\0';
+    m_str = _allocateChar(11);
 	m_count = 0;
 	m_limit = 10;
 }
@@ -13,8 +13,7 @@ string::string(const string &obj){
 	//内容をコピーする
 	m_count = 0;
 	m_limit = obj.m_limit;
-	m_str = new char[obj.m_limit+1];
-	*m_str = '\0';
+	m_str = _allocateChar(obj.m_limit+1);
 	add(obj.m_str);
 }
 
@@ -29,8 +28,7 @@ string &string::operator=(const string &obj){
 	delete[] m_str;
 	m_count = 0;
 	m_limit = obj.m_limit;
-	m_str = new char[obj.m_limit+1];
-	*m_str = '\0';
+	m_str = _allocateChar(obj.m_limit+1);
 	add(obj.m_str);
 	return *this;
 }
@@ -63,8 +61,7 @@ void string::add(const char *arg_str){
 //m_strからstart+1文字目からlimit文字を取り出した新しいstringインスタンスを返す
 string string::extract(int start, int length){
 	//m_strから文字を切り出す
-	char *new_str = new char[length + 1];
-	*new_str = '\0';
+	char *new_str = _allocateChar(length + 1);
 	_extract(m_str, new_str, start, length);
 
 	//stringインスタンスとして作って返す
@@ -88,14 +85,20 @@ int string::length(){
 void string::_expandLimit(int want_limit){
 	//tmp_strに必要量の倍のメモリを確保する
 	m_limit = want_limit * 2;
-	char *tmp_str = new char[m_limit + 1];
-	*tmp_str = '\0';
+	char *tmp_str = _allocateChar(m_limit + 1);
 
 	//m_strの文字をtmp_strに移す
 	_add(tmp_str, m_str);
 	
 	delete[] m_str;
 	m_str = tmp_str;
+}
+
+//初期化した文字列保持用メモリアドレスを返す
+char *string::_allocateChar(int size){
+    char *ret_char = new char[size];
+    *ret_char = '\0';
+    return ret_char;
 }
 
 //文字列定数の文字数を返す

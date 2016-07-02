@@ -10,6 +10,9 @@ private:
 	//m_strのメモリサイズをwant_limit文字入るように拡張する
 	void _expandLimit(int want_limit);
 
+    //初期化した文字列保持用メモリアドレスを返す
+    char *_allocateChar(int size);
+
 	//文字列定数の文字数を返す
 	int _length(const char *string);
 
