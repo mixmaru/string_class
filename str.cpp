@@ -11,10 +11,7 @@ string::string(){
 //コピーコンストラクタ
 string::string(const string &obj){
 	//内容をコピーする
-	m_count = 0;
-	m_limit = obj.m_limit;
-	m_str = _allocateChar(obj.m_limit+1);
-	add(obj.m_str);
+	_copyObj(this, &obj);
 }
 
 //デストラクタ
@@ -25,11 +22,7 @@ string::~string(){
 //代入演算子のオーバーロード
 string &string::operator=(const string &obj){
 	//内容をコピーする
-	delete[] m_str;
-	m_count = 0;
-	m_limit = obj.m_limit;
-	m_str = _allocateChar(obj.m_limit+1);
-	add(obj.m_str);
+	_copyObj(this, &obj);
 	return *this;
 }
 
@@ -136,6 +129,15 @@ void string::_extract(const char *from_str, char *to_str, int start, int length)
 		*(to_str + i) = *(from_str + i);
 	}
 	*(to_str + i) = '\0';
+}
+
+//base_objの内容をobjへコピーする
+void string::_copyObj(string *obj, const string *base_obj){
+	delete[] obj->m_str;
+	obj->m_count = 0;
+	obj->m_limit = base_obj->m_limit;
+	obj->m_str = _allocateChar(base_obj->m_limit+1);
+	add(base_obj->m_str);
 }
 
 //(テスト用)メンバ出力関数

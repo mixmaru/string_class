@@ -22,7 +22,9 @@ private:
 	//from_strのstart文字目からlength文字をto_strへコピーする
 	void _extract(const char *from_str, char *to_str, int start, int length);
 
-	
+    //base_objの内容をobjへコピーする
+    void _copyObj(string *obj, const string *base_obj);
+
 public:
 	string();//コンストラクタ
 	string(const string &obj);//コピーコンストラクタ
