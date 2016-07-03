@@ -104,7 +104,7 @@ int string::_length(const char *arg_str){
 	return count;
 }
 
-//string1の文字列の末尾からstring2の文字列を追加する
+//string1の文字列の末尾へstring2の文字列を追加する
 void string::_add(char *string1, const char *string2){
 	//string1のポインタを、\0の位置まですすめる
 	while(*string1){
