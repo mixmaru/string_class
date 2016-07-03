@@ -43,15 +43,13 @@ void string::add(const char *arg_str){
 	if(need_count > m_limit){
 		_expandLimit(need_count);
 	}
-
 	//m_strの末へ追加していく
 	_add(m_str, arg_str);
-	
 	//文字数カウント更新
 	m_count = m_count + add_count;
 }
 
-//m_strからstart+1文字目からlimit文字を取り出した新しいstringインスタンスを返す
+//保持文字列(m_str)からstart+1文字目からlimit文字を取り出した新しいstringインスタンスを返す
 string string::extract(int start, int length){
 	//m_strから文字を切り出す
 	char *new_str = _allocateChar(length);
@@ -64,17 +62,18 @@ string string::extract(int start, int length){
 	return ret_string;
 }
 
-//m_str文字列のポインタを返す
+//保持文字列(m_str)のポインタを返す
 const char *string::value(){
 	return m_str;
 }
 
-//m_countを返す
+//保持文字列(m_str)の文字数を返す
 int string::length(){
 	return m_count;
 }
 
-//m_strのメモリサイズをwant_limit文字入るように拡張する
+//保持文字列(m_str)が確保しているメモリサイズをwant_limitの2倍の文字列が入るようにメモリを確保する。
+//※2倍確保されるのは頻繁に拡張処理が実行されないようにするため。
 void string::_expandLimit(int want_limit){
 	//tmp_strに必要量の倍のメモリを確保する
 	m_limit = want_limit * 2;
@@ -95,7 +94,7 @@ char *string::_allocateChar(int size){
     return ret_char;
 }
 
-//文字列定数の文字数を返す
+//指定文字列定数の文字数を返す
 int string::_length(const char *arg_str){
 	int count = 0;
 	while(*arg_str){
